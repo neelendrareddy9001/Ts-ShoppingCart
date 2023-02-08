@@ -36,19 +36,18 @@ export function StoreItem({id, name, price, imgUrl} : StoreItemProps) {
                 </Card.Title>
                 <div className='mt-auto'>
                     {quantity === 0 ? (
-                        <Button className='w-100'>+ Add To Cart</Button>
-                    ) : <div className='d-flex align-items-center flex-column' style={{gap: ".5rem"}}>
-                            <div className='d-flex algn-items-center justify-content-center' style={{gap : ".5rem"}}>
-                                <Button>-</Button>    
-                                <div>
-                                    <span className='fs-3'>{quantity}</span>in Cart
-                                </div>
-                                <Button>+</Button>
+                        <Button className="w-100" onClick={() => increaseCartQuantity(id)}>+ Add To Cart</Button>
+                    ) : ( <div className='d-flex align-items-center flex-column' style={{gap: ".5rem"}}>
+                        <div className='d-flex align-items-center justify-content-center' style={{gap : ".5rem"}}>
+                            <Button onClick={() => decreaseCartQuantity(id)}>-</Button>
+                            <div>
+                                <span className='fs-3'>{quantity}</span>in cart
                             </div>
-                            <Button variant='danger' size='sm'>
-                                Remove
-                            </Button>
-                        </div>}
+                            <Button onClick={() => increaseCartQuantity(id)}>+</Button>
+                        </div>
+                            <Button variant='danger' size="sm" onClick={() => removeFromCart(id)}>Remove</Button>
+                        </div> 
+                    )}
                 </div>
             </Card.Body>
         </Card>
